@@ -4,6 +4,8 @@
 
 @section('breadcrumbs')
     @include('components.breadcrumbs', [
+        'title' => 'Status Laporan',
+        'subtitle' => 'Pantau perkembangan laporan pengaduan Anda',
         'items' => [
             ['label' => 'Beranda', 'url' => route('home')],
             ['label' => 'Status Laporan'],

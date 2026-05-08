@@ -29,14 +29,12 @@
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon purple">
-                                        <i class="bi bi-chat-left-text-fill" style="width: auto; height: auto;"></i>
-                                    </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="stats-icon purple flex-shrink-0">
+                                    <i class="bi bi-chat-left-text-fill"></i>
                                 </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pengaduan</h6>
+                                <div class="flex-grow-1 min-w-0">
+                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Pengaduan</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalPengaduan) }}</h6>
                                 </div>
                             </div>
@@ -47,14 +45,12 @@
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon blue">
-                                        <i class="bi bi-reply-fill" style="width: auto; height: auto;"></i>
-                                    </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="stats-icon blue flex-shrink-0">
+                                    <i class="bi bi-reply-fill"></i>
                                 </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Tanggapan</h6>
+                                <div class="flex-grow-1 min-w-0">
+                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Tanggapan</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalTanggapan) }}</h6>
                                 </div>
                             </div>
@@ -65,14 +61,12 @@
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon green">
-                                        <i class="bi bi-people-fill" style="width: auto; height: auto;"></i>
-                                    </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="stats-icon green flex-shrink-0">
+                                    <i class="bi bi-people-fill"></i>
                                 </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Siswa</h6>
+                                <div class="flex-grow-1 min-w-0">
+                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Siswa</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalSiswa) }}</h6>
                                 </div>
                             </div>
@@ -83,14 +77,12 @@
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon red">
-                                        <i class="bi bi-person-badge-fill" style="width: auto; height: auto;"></i>
-                                    </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="stats-icon red flex-shrink-0">
+                                    <i class="bi bi-person-badge-fill"></i>
                                 </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Petugas</h6>
+                                <div class="flex-grow-1 min-w-0">
+                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Petugas</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalPetugas) }}</h6>
                                 </div>
                             </div>

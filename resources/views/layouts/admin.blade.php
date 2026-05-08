@@ -16,6 +16,37 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
     
+    <style>
+        /* Fix: icon biar pas di tengah tanpa ubah warna/box bawaan template */
+        .stats-icon,
+        .avatar,
+        .avatar-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stats-icon i,
+        .avatar i,
+        .avatar-content i {
+            line-height: 1;
+            vertical-align: middle;
+        }
+
+        /* Layout padding responsif biar konten gak terlalu mepet di layar kecil */
+        #main {
+            padding-left: .75rem;
+            padding-right: .75rem;
+        }
+
+        @media (min-width: 768px) {
+            #main {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+        }
+    </style>
+
     <!-- CSS Tambahan (Opsional, untuk halaman tertentu) -->
     @stack('styles')
 </head>

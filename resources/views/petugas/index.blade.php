@@ -17,13 +17,28 @@
         <div class="col-12 col-lg-8">
             <div class="row">
                 <div class="col-6 col-md-4">
-                    <div class="card"><div class="card-body px-3 py-4-5"><h6 class="text-muted">Menunggu</h6><h3 class="mb-0 text-warning">{{ number_format($menunggu) }}</h3></div></div>
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <h6 class="text-muted mb-1 text-truncate">Menunggu</h6>
+                            <h3 class="mb-0 text-warning">{{ number_format($menunggu) }}</h3>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-6 col-md-4">
-                    <div class="card"><div class="card-body px-3 py-4-5"><h6 class="text-muted">Diproses</h6><h3 class="mb-0 text-primary">{{ number_format($diproses) }}</h3></div></div>
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <h6 class="text-muted mb-1 text-truncate">Diproses</h6>
+                            <h3 class="mb-0 text-primary">{{ number_format($diproses) }}</h3>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-6 col-md-4">
-                    <div class="card"><div class="card-body px-3 py-4-5"><h6 class="text-muted">Selesai</h6><h3 class="mb-0 text-success">{{ number_format($selesai) }}</h3></div></div>
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <h6 class="text-muted mb-1 text-truncate">Selesai</h6>
+                            <h3 class="mb-0 text-success">{{ number_format($selesai) }}</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
 

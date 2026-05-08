@@ -50,6 +50,26 @@
             width: 2.5rem;
         }
 
+        /* Icon centering (landing stats + buttons) */
+        .stats-icon,
+        .brand-icon,
+        .step-icon {
+            align-items: center;
+            display: inline-flex !important;
+            justify-content: center;
+        }
+
+        .stats-icon i,
+        .brand-icon i,
+        .step-icon i {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1 !important;
+            width: 1em !important;
+            height: 1em !important;
+        }
+
         .hero-card {
             background: linear-gradient(135deg, #435ebe 0%, #25396f 100%);
             border: 0;
@@ -98,6 +118,20 @@
             justify-content: center;
             margin-bottom: .85rem;
             width: 3.25rem;
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+        }
+
+        .page-title h3 {
+            font-weight: 700;
+        }
+
+        .text-subtitle {
+            color: #6c757d !important;
+            font-size: 0.875rem;
+            margin-bottom: 0;
         }
 
         .page-banner {
