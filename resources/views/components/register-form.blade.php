@@ -52,7 +52,7 @@
                     
                     <div class="col-md-6 col-12">
                         <div class="form-group position-relative has-icon-left mb-3">
-                            <select name="kelas" class="form-select form-control-xl" required style="padding-left: 3rem;">
+                            <select name="kelas" class="form-select form-control-xl py-3" required style="padding-left: 3rem;">
                                 <option value="" disabled selected>Pilih Kelas</option>
                                 @foreach(['10', '11', '12'] as $tingkat)
                                     <optgroup label="Kelas {{ $tingkat }}">
