@@ -3,301 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Aspirasi dan Pengaduan Online Rakyat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    
-    <style>
-        :root {
-            --lapor-red: #d9043d;
-            --mazer-bg: #f2f7ff;
-            --mazer-card-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
+    <title>Sambat Skanawa - Pengaduan Siswa</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/iconly/bold.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
+
+    <style>
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--mazer-bg);
-            margin: 0;
+            background: #f2f7ff;
         }
 
-        /* Hero Section Berdasarkan Foto */
-        .hero {
-            background: linear-gradient(135deg, #d9043d 0%, #bd0032 100%);
-            padding-bottom: 250px;
-            position: relative;
-            color: white;
-            text-align: center;
-        }
-
-        .navbar-custom {
-            padding: 20px 0;
-        }
-
-        .navbar-custom .nav-link {
-            color: rgba(255,255,255,0.9);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            margin: 0 15px;
-        }
-
-        .hero-content h1 {
-            font-weight: 700;
-            margin-top: 50px;
-            font-size: 2.2rem;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* Card Form Lapor */
-        .report-container {
-            margin-top: -200px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .card-lapor {
-            border: none;
-            border-radius: 10px;
-            box-shadow: var(--mazer-card-shadow);
+        .public-navbar {
             background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(50, 65, 120, .08);
+            margin-top: 1.5rem;
+            padding: .85rem 1rem;
+        }
+
+        .brand-mark {
+            align-items: center;
+            color: #25396f;
+            display: inline-flex;
+            font-size: 1.2rem;
+            font-weight: 900;
+            gap: .65rem;
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            align-items: center;
+            background: #435ebe;
+            border-radius: .8rem;
+            color: #fff;
+            display: inline-flex;
+            height: 2.5rem;
+            justify-content: center;
+            width: 2.5rem;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, #435ebe 0%, #25396f 100%);
+            border: 0;
+            border-radius: 1.4rem;
+            box-shadow: 0 18px 45px rgba(67, 94, 190, .22);
+            color: #fff;
             overflow: hidden;
+            position: relative;
         }
 
-        .card-header-red {
-            background: var(--lapor-red);
-            color: white;
-            padding: 15px 20px;
-            font-weight: 800;
-            font-size: 1.1rem;
+        .hero-card::after {
+            background: rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            content: '';
+            height: 260px;
+            position: absolute;
+            right: -85px;
+            top: -95px;
+            width: 260px;
         }
 
-        /* Classification Radio sesuai Foto */
-        .classification-group {
-            display: flex;
-            border: 1px solid #dee2e6;
-            margin-bottom: 20px;
+        .hero-card .card-body {
+            position: relative;
+            z-index: 1;
         }
 
-        .classification-group label {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            border-right: 1px solid #dee2e6;
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--lapor-red);
-            text-transform: uppercase;
-            margin-bottom: 0;
-            transition: 0.3s;
+        .form-card {
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 10px 24px rgba(50, 65, 120, .08);
         }
 
-        .classification-group label:last-child { border-right: none; }
-        .classification-group input[type="radio"] { margin-right: 5px; }
-        .classification-group label:hover { background: #fff5f7; }
-
-        /* Form Controls */
-        .form-control, .form-select {
-            border-radius: 5px;
-            padding: 12px;
-            border: 1px solid #e5e5e5;
-            margin-bottom: 15px;
-        }
-
-        .helper-text {
-            background: #fdfdfd;
-            border: 1px dashed #ddd;
-            padding: 10px;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .btn-submit-lapor {
-            background: var(--lapor-red);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            font-weight: 800;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
-        /* Process Steps */
-        .process-section {
-            padding: 280px 0 60px; /* Offset for the overlapping card */
-            background: #fff;
+        .required::after {
+            color: #dc3545;
+            content: ' *';
         }
 
         .step-icon {
-            width: 50px;
-            height: 50px;
-            background: #f2f2f2;
-            border-radius: 50%;
-            display: flex;
             align-items: center;
+            background: #eef3ff;
+            border-radius: 1rem;
+            color: #435ebe;
+            display: inline-flex;
+            font-size: 1.35rem;
+            height: 3.25rem;
             justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 1.2rem;
-            color: #444;
+            margin-bottom: .85rem;
+            width: 3.25rem;
         }
-
-        .step-active .step-icon {
-            background: var(--lapor-red);
-            color: #fff;
-        }
-
-        .step-item h6 { font-weight: 800; margin-bottom: 5px; }
-        .step-item p { font-size: 0.8rem; color: #777; }
-
-        /* Stats Section */
-        .stats-banner {
-            background: #d9043d;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .stats-banner h2 { font-weight: 800; letter-spacing: 1px; }
-        .stats-banner .big-number { font-size: 4.5rem; font-weight: 900; }
     </style>
 </head>
 <body>
+    <div id="app" class="container py-4 py-lg-5">
+        <nav class="public-navbar d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+            <a href="{{ route('home') }}" class="brand-mark">
+                <span class="brand-icon"><i class="bi bi-chat-square-text-fill"></i></span>
+                <span>Sambat Skanawa</span>
+            </a>
+            <div class="d-flex flex-wrap gap-2">
+                <a href="#form-pengaduan" class="btn btn-primary"><i class="bi bi-pencil-square me-1"></i> Buat Laporan</a>
+                <a href="{{ route('user.pengaduan.status') }}" class="btn btn-light-primary"><i class="bi bi-search me-1"></i> Cek Status</a>
+                <a href="{{ route('login') }}" class="btn btn-outline-primary"><i class="bi bi-person-fill me-1"></i> Masuk Petugas</a>
+            </div>
+        </nav>
 
-    <section class="hero">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-custom">
-                <div class="container-fluid">
-                    <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="#">
-                        <img src="https://www.lapor.go.id/themes/lapor/assets/images/logo.png" height="40" class="me-2" alt="Logo">
-                    </a>
-                    <div class="ms-auto d-flex align-items-center">
-                        <a class="nav-link" href="#">Tentang Lapor!</a>
-                        <a class="nav-link" href="#">Statistik</a>
-                        <a class="nav-link border px-3 rounded text-white" href="#"><i class="bi bi-person-fill"></i> Masuk</a>
+        <main class="page-content mt-4">
+            <section class="row align-items-stretch g-4">
+                <div class="col-12 col-xl-8">
+                    <div class="card hero-card h-100">
+                        <div class="card-body p-4 p-lg-5">
+                            <span class="badge bg-light text-primary mb-3">Layanan Pengaduan Siswa</span>
+                            <h1 class="display-6 fw-bold mb-3">Sampaikan pengaduan Anda dengan aman dan terdata.</h1>
+                            <p class="fs-5 mb-4 opacity-75">Isi formulir sesuai data siswa yang terdaftar agar laporan bisa diverifikasi oleh admin dan petugas.</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="#form-pengaduan" class="btn btn-light fw-bold">Laporkan Sekarang</a>
+                                <a href="{{ route('user.pengaduan.status') }}" class="btn btn-outline-light fw-bold">Lihat Perkembangan</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </nav>
-
-            <div class="hero-content">
-                <h1>Layanan Aspirasi dan Pengaduan Online Rakyat</h1>
-                <p>Sampaikan laporan Anda langsung kepada instansi pemerintah berwenang</p>
-                <div style="width: 60px; height: 4px; background: white; margin: 0 auto;"></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="container report-container">
-        <div class="row justify-content-center">
-            <div class="col-lg-9">
-                <div class="card card-lapor">
-                    <div class="card-header-red">Sampaikan Laporan Anda</div>
-                    <div class="card-body p-4">
-                        <form>
-                            <label class="text-muted fw-bold small mb-2">Pilih Klasifikasi Laporan</label>
-                            <div class="classification-group">
-                                <label><input type="radio" name="type" checked> Pengaduan</label>
-                                <label><input type="radio" name="type"> Aspirasi</label>
-                                <label><input type="radio" name="type"> Permintaan Informasi</label>
-                            </div>
-
-                            <div class="helper-text">
-                                Perhatikan Cara Menyampaikan Pengaduan Yang Baik dan Benar <span class="badge bg-danger">?</span>
-                            </div>
-
-                            <input type="text" class="form-control" placeholder="Ketik Judul Laporan Anda *">
-                            <textarea class="form-control" rows="4" placeholder="Ketik Isi Laporan Anda *"></textarea>
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" placeholder="Pilih Tanggal Kejadian *">
-                                </div>
-                            </div>
-                            
-                            <select class="form-select">
-                                <option selected>Ketik Lokasi Kejadian *</option>
-                            </select>
-
-                            <select class="form-select">
-                                <option selected>Ketik Instansi Tujuan</option>
-                            </select>
-
-                            <select class="form-select">
-                                <option selected>Pilih Kategori Laporan Anda</option>
-                            </select>
-
-                            <div class="d-flex align-items-center justify-content-between mt-4">
-                                <div>
-                                    <label class="text-primary fw-bold" style="cursor:pointer">
-                                        <i class="bi bi-paperclip"></i> Upload Lampiran
-                                        <input type="file" class="d-none">
-                                    </label>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="anonim">
-                                        <label class="form-check-label small fw-bold text-muted" for="anonim">Anonim</label>
+                <div class="col-12 col-xl-4">
+                    <div class="row g-3 h-100">
+                        <div class="col-6 col-xl-12">
+                            <div class="card h-100">
+                                <div class="card-body py-4 px-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon purple"><i class="bi bi-chat-left-text-fill" style="width: auto; height: auto;"></i></div>
+                                        <div class="ms-3">
+                                            <h6 class="text-muted font-semibold mb-1">Total Laporan</h6>
+                                            <h3 class="font-extrabold mb-0">{{ number_format($totalPengaduan) }}</h3>
+                                        </div>
                                     </div>
-                                    <div class="form-check form-check-inline me-3">
-                                        <input class="form-check-input" type="checkbox" id="rahasia">
-                                        <label class="form-check-label small fw-bold text-muted" for="rahasia">Rahasia</label>
-                                    </div>
-                                    <button class="btn btn-submit-lapor" type="button">LAPOR!</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="col-6 col-xl-12">
+                            <div class="card h-100">
+                                <div class="card-body py-4 px-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon blue"><i class="bi bi-arrow-repeat" style="width: auto; height: auto;"></i></div>
+                                        <div class="ms-3">
+                                            <h6 class="text-muted font-semibold mb-1">Diproses</h6>
+                                            <h3 class="font-extrabold mb-0">{{ number_format($totalDiproses) }}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card h-100">
+                                <div class="card-body py-4 px-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon green"><i class="bi bi-check-circle-fill" style="width: auto; height: auto;"></i></div>
+                                        <div class="ms-3">
+                                            <h6 class="text-muted font-semibold mb-1">Selesai</h6>
+                                            <h3 class="font-extrabold mb-0">{{ number_format($totalSelesai) }}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+
+            <section class="section mt-4" id="form-pengaduan">
+                <div class="row g-4">
+                    <div class="col-12 col-xl-8">
+                        <div class="card form-card">
+                            <div class="card-header bg-white">
+                                <h4 class="card-title mb-1">Form Pengaduan Siswa</h4>
+                                <p class="text-muted mb-0">Kolom formulir disesuaikan dengan tabel pengaduan: kategori, NIS siswa, judul, isi laporan, dan foto.</p>
+                            </div>
+                            <div class="card-body">
+                                @if (session('success'))
+                                    <div class="alert alert-success"><i class="bi bi-check-circle me-2"></i>{{ session('success') }}</div>
+                                @endif
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <div class="fw-bold mb-1"><i class="bi bi-exclamation-triangle me-2"></i>Periksa kembali data laporan.</div>
+                                        <ul class="mb-0 ps-3">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <form action="{{ route('user.pengaduan.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="siswa_nis" class="form-label required">NIS Siswa</label>
+                                            <input type="number" name="siswa_nis" id="siswa_nis" value="{{ old('siswa_nis') }}" class="form-control @error('siswa_nis') is-invalid @enderror" placeholder="Masukkan NIS terdaftar" required>
+                                            @error('siswa_nis')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="kategori_id" class="form-label required">Kategori</label>
+                                            <select name="kategori_id" id="kategori_id" class="form-select @error('kategori_id') is-invalid @enderror" required>
+                                                <option value="">Pilih kategori laporan</option>
+                                                @foreach ($kategoris as $kategori)
+                                                    <option value="{{ $kategori->id }}" @selected(old('kategori_id') == $kategori->id)>{{ $kategori->nama_kategori }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('kategori_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="judul_laporan" class="form-label required">Judul Laporan</label>
+                                            <input type="text" name="judul_laporan" id="judul_laporan" value="{{ old('judul_laporan') }}" class="form-control @error('judul_laporan') is-invalid @enderror" maxlength="255" placeholder="Contoh: Kerusakan fasilitas kelas" required>
+                                            @error('judul_laporan')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="isi_laporan" class="form-label required">Isi Laporan</label>
+                                            <textarea name="isi_laporan" id="isi_laporan" rows="6" class="form-control @error('isi_laporan') is-invalid @enderror" placeholder="Tuliskan kronologi atau detail pengaduan secara jelas" required>{{ old('isi_laporan') }}</textarea>
+                                            @error('isi_laporan')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="foto" class="form-label">Foto Pendukung</label>
+                                            <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*">
+                                            <small class="text-muted">Opsional. Format gambar maksimal 2MB.</small>
+                                            @error('foto')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4">
+                                        <p class="text-muted mb-0"><i class="bi bi-info-circle me-1"></i>Status awal laporan otomatis <strong>pending</strong>.</p>
+                                        <button type="submit" class="btn btn-primary btn-lg fw-bold"><i class="bi bi-send me-1"></i> Kirim Laporan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-white"><h4 class="card-title mb-0">Alur Penanganan</h4></div>
+                            <div class="card-body">
+                                <div class="d-flex mb-4">
+                                    <span class="step-icon me-3"><i class="bi bi-pencil-square"></i></span>
+                                    <div><h6 class="fw-bold mb-1">Tulis Laporan</h6><p class="text-muted mb-0">Siswa mengirim laporan sesuai data NIS dan kategori.</p></div>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <span class="step-icon me-3"><i class="bi bi-shield-check"></i></span>
+                                    <div><h6 class="fw-bold mb-1">Verifikasi Petugas</h6><p class="text-muted mb-0">Admin atau petugas memeriksa dan mengubah status laporan.</p></div>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="step-icon me-3"><i class="bi bi-chat-dots"></i></span>
+                                    <div><h6 class="fw-bold mb-1">Tanggapan</h6><p class="text-muted mb-0">Tanggapan dapat dipantau melalui halaman cek status.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-
-    <section class="process-section">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col step-item step-active">
-                    <div class="step-icon"><i class="bi bi-pencil-square"></i></div>
-                    <h6>Tulis Laporan</h6>
-                    <p>Laporkan keluhan anda dengan jelas.</p>
-                </div>
-                <div class="col step-item">
-                    <div class="step-icon"><i class="bi bi-arrow-repeat"></i></div>
-                    <h6>Proses Verifikasi</h6>
-                    <p>Verifikasi dalam 3 hari kerja.</p>
-                </div>
-                <div class="col step-item">
-                    <div class="step-icon"><i class="bi bi-chat-dots"></i></div>
-                    <h6>Tindak Lanjut</h6>
-                    <p>Instansi akan menindaklanjuti.</p>
-                </div>
-                <div class="col step-item">
-                    <div class="step-icon"><i class="bi bi-chat-left-text"></i></div>
-                    <h6>Tanggapan</h6>
-                    <p>Beri tanggapan atas balasan.</p>
-                </div>
-                <div class="col step-item">
-                    <div class="step-icon"><i class="bi bi-check-circle"></i></div>
-                    <h6>Selesai</h6>
-                    <p>Laporan selesai ditangani.</p>
-                </div>
-            </div>
-            <button class="btn btn-outline-danger mt-5 fw-bold px-4 py-2">PELAJARI LEBIH LANJUT</button>
-        </div>
-    </section>
-
-    <section class="stats-banner">
-        <div class="container">
-            <h2>JUMLAH LAPORAN SEKARANG</h2>
-            <div class="big-number">959,139</div>
-        </div>
-    </section>
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 </body>
