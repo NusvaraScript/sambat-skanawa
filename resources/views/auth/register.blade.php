@@ -1,15 +1,15 @@
 @extends('layouts.auth')
 
-@section('title', 'Login - Sembilan Bersuara')
+@section('title', 'Daftar - Sembilan Bersuara')
 
 @section('content')
     <div class="mb-3">
         @include('components.breadcrumbs', [
             'items' => [
                 ['label' => 'Beranda', 'url' => route('home')],
-                ['label' => 'Login'],
+                ['label' => 'Daftar'],
             ],
         ])
     </div>
-    @include('components.login-form')
+    @include('components.register-form')
 @endsection

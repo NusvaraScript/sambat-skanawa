@@ -1,25 +1,18 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Edit Tanggapan')
 
 @section('content')
-    <div class="page-title">
-        <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Edit Tanggapan</h3>
-                <p class="text-subtitle text-muted">Perbarui data tanggapan pengaduan.</p>
-            </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.tanggapan.index') }}">Tanggapan</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+@component('components.admin-page-heading', [
+    'title' => 'Edit Tanggapan',
+    'subtitle' => 'Perbarui data tanggapan pengaduan.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['label' => 'Tanggapan', 'url' => route('admin.tanggapan.index')],
+        ['label' => 'Edit'],
+    ],
+])
+@endcomponent
 
     <section class="section">
         <div class="card">

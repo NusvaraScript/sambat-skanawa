@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Petugas;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class PetugasSeeder extends Seeder
 {
@@ -12,13 +14,24 @@ class PetugasSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Petugas::updateOrCreate(
+        // Akun admin utama
+        Petugas::updateOrCreate(
             ['username' => 'admin'],
             [
                 'nama_petugas' => 'Administrator',
                 'level' => 'admin',
-                'password' => \Illuminate\Support\Facades\Hash::make('admin123')
-            ]
+                'password' => Hash::make('admin123'),
+            ],
+        );
+
+        // Akun petugas default (non-admin)
+        Petugas::updateOrCreate(
+            ['username' => 'petugas'],
+            [
+                'nama_petugas' => 'Petugas Default',
+                'level' => 'petugas',
+                'password' => Hash::make('petugas123'),
+            ],
         );
     }
 }

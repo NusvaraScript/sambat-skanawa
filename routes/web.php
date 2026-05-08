@@ -32,11 +32,15 @@ Route::get('/pengaduan/status', [UserPengaduanController::class, 'status'])->nam
 Route::middleware('guest')->group(function (): void {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+
+    Route::get('/daftar', [AuthController::class, 'showRegister'])->name('register');
+    Route::post('/daftar', [AuthController::class, 'register'])->name('register.store');
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+// Logout bisa untuk dua tipe akun (petugas/siswa).
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): void {
+Route::middleware('auth:petugas')->prefix('admin')->name('admin.')->group(function (): void {
     Route::redirect('/', '/admin/dashboard')->name('home');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

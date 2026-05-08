@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Dashboard')
 
@@ -13,12 +13,14 @@
     ];
 @endphp
 
-<div class="page-heading">
-    <h3>Dashboard Pengaduan Siswa</h3>
-    <p class="text-subtitle text-muted">
-        Ringkasan data pengaduan, tanggapan, siswa, dan petugas
-    </p>
-</div>
+@component('components.admin-page-heading', [
+    'title' => 'Dashboard Pengaduan Siswa',
+    'subtitle' => 'Ringkasan data pengaduan, tanggapan, siswa, dan petugas',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard'],
+    ],
+])
+@endcomponent
 
 <div class="page-content">
     <section class="row">

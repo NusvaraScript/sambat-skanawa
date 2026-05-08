@@ -1,12 +1,16 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Dashboard Petugas')
 
 @section('content')
-<div class="page-heading">
-    <h3>Dashboard Petugas</h3>
-    <p class="text-subtitle text-muted">Fokus pada verifikasi laporan dan tindak lanjut pengaduan siswa.</p>
-</div>
+@component('components.admin-page-heading', [
+    'title' => 'Dashboard Petugas',
+    'subtitle' => 'Fokus pada verifikasi laporan dan tindak lanjut pengaduan siswa.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard'],
+    ],
+])
+@endcomponent
 
 <div class="page-content">
     <section class="row">

@@ -1,24 +1,17 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Data Tanggapan')
 
 @section('content')
-    <div class="page-title">
-        <div class="row">
-            <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Data Tanggapan</h3>
-                <p class="text-subtitle text-muted">Kelola tanggapan admin untuk pengaduan siswa.</p>
-            </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Tanggapan</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+@component('components.admin-page-heading', [
+    'title' => 'Data Tanggapan',
+    'subtitle' => 'Kelola tanggapan admin untuk pengaduan siswa.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['label' => 'Tanggapan'],
+    ],
+])
+@endcomponent
 
     <section class="section">
         <div class="card">
@@ -29,13 +22,6 @@
                 </a>
             </div>
             <div class="card-body">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                
                 @include('components.table-search', [
                     'searchAction' => route('admin.tanggapan.index'),
                     'searchValue' => $search ?? '',
@@ -43,14 +29,14 @@
                 ])
 
                 <div class="table-responsive">
-                    <table class="table table-striped align-middle">
+                    <table class="table table-hover align-middle">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Judul Pengaduan</th>
                                 <th>Nama Siswa</th>
                                 <th>Nama Petugas</th>
-                                <th>Isi Tanggapan</th>
+                                <th>Ringkasan</th>
                                 <th>Tanggal Dibuat</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
@@ -59,30 +45,36 @@
                             @forelse ($tanggapan as $item)
                                 <tr>
                                     <td>{{ $tanggapan->firstItem() + $loop->index }}</td>
-                                    <td>{{ $item->pengaduan->judul_laporan ?? '-' }}</td>
-                                    <td>{{ $item->pengaduan->siswa->nama_siswa ?? '-' }}</td>
+                                    <td>
+                                        <div class="fw-semibold">{{ $item->pengaduan->judul_laporan ?? '-' }}</div>
+                                        <small class="text-muted d-block">{{ \Illuminate\Support\Str::limit($item->pengaduan->isi_laporan ?? '', 70) }}</small>
+                                    </td>
+                                    <td>{{ $item->pengaduan?->is_anonymous ? 'Anonim' : ($item->pengaduan->siswa->nama_siswa ?? '-') }}</td>
                                     <td>{{ $item->petugas->nama_petugas ?? '-' }}</td>
-                                    <td>{{ \Illuminate\Support\Str::limit($item->isi_tanggapan, 80) }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($item->isi_tanggapan, 120) }}</td>
                                     <td>{{ $item->created_at?->format('d-m-Y H:i') ?? '-' }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin.tanggapan.show', $item) }}" class="btn btn-sm btn-info">
-                                            <i class="bi bi-eye"></i> Detail
+                                            <i class="bi bi-eye"></i><span class="d-none d-lg-inline"> Detail</span>
                                         </a>
                                         <a href="{{ route('admin.tanggapan.edit', $item) }}" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil-square"></i> Edit
+                                            <i class="bi bi-pencil-square"></i><span class="d-none d-lg-inline"> Edit</span>
                                         </a>
                                         <form action="{{ route('admin.tanggapan.destroy', $item) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus tanggapan ini?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="bi bi-trash"></i> Hapus
+                                                <i class="bi bi-trash"></i><span class="d-none d-lg-inline"> Hapus</span>
                                             </button>
                                         </form>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">Belum ada data tanggapan.</td>
+                                    <td colspan="7" class="text-center text-muted py-5">
+                                        <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                        Belum ada data tanggapan.
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
