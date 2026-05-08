@@ -1,22 +1,24 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Detail Pengaduan')
 
 @section('content')
-<div class="page-heading">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <h3>Detail Pengaduan</h3>
-            <p class="text-subtitle text-muted mb-0">Lihat detail laporan dan tanggapan yang terkait.</p>
-        </div>
-        <div class="d-flex gap-2">
-            <a href="{{ route('admin.pengaduan.edit', $pengaduan) }}" class="btn btn-warning">
-                <i class="bi bi-pencil-square"></i> Edit
-            </a>
-            <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-light-secondary">Kembali</a>
-        </div>
-    </div>
-</div>
+@component('components.admin-page-heading', [
+    'title' => 'Detail Pengaduan',
+    'subtitle' => 'Lihat detail laporan dan tanggapan yang terkait.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['label' => 'Pengaduan', 'url' => route('admin.pengaduan.index')],
+        ['label' => 'Detail'],
+    ],
+])
+    @slot('actions')
+        <a href="{{ route('admin.pengaduan.edit', $pengaduan) }}" class="btn btn-warning">
+            <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a href="{{ route('admin.pengaduan.index') }}" class="btn btn-light-secondary">Kembali</a>
+    @endslot
+@endcomponent
 
 <div class="page-content">
     <section class="section">
@@ -32,7 +34,15 @@
                             <dd class="col-sm-8">{{ $pengaduan->judul_laporan }}</dd>
 
                             <dt class="col-sm-4">Siswa</dt>
-                            <dd class="col-sm-8">{{ $pengaduan->siswa->nama_siswa ?? '-' }} ({{ $pengaduan->siswa_nis }})</dd>
+                            <dd class="col-sm-8">
+                                @if ($pengaduan->is_anonymous)
+                                    <span class="badge bg-light-secondary text-dark">
+                                        <i class="bi bi-incognito me-1"></i>Anonim
+                                    </span>
+                                @else
+                                    {{ $pengaduan->siswa->nama_siswa ?? '-' }} ({{ $pengaduan->siswa_nis ?? '-' }})
+                                @endif
+                            </dd>
 
                             <dt class="col-sm-4">Kategori</dt>
                             <dd class="col-sm-8">{{ $pengaduan->kategori->nama_kategori ?? '-' }}</dd>
@@ -45,7 +55,17 @@
                             </dd>
 
                             <dt class="col-sm-4">Foto</dt>
-                            <dd class="col-sm-8">{{ $pengaduan->foto ?: '-' }}</dd>
+                            <dd class="col-sm-8">
+                                @if ($pengaduan->foto)
+                                    <a href="{{ asset('storage/' . $pengaduan->foto) }}" target="_blank" class="d-inline-block">
+                                        <img src="{{ asset('storage/' . $pengaduan->foto) }}" alt="Foto pengaduan"
+                                             class="img-fluid rounded border" style="max-height: 260px;">
+                                    </a>
+                                    <div class="text-muted small mt-2">{{ $pengaduan->foto }}</div>
+                                @else
+                                    -
+                                @endif
+                            </dd>
 
                             <dt class="col-sm-4">Dibuat</dt>
                             <dd class="col-sm-8">{{ $pengaduan->created_at?->format('d-m-Y H:i') ?? '-' }}</dd>

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Petugas extends Model
+class Petugas extends Authenticatable
 {
     protected $table = 'petugas';
 
@@ -18,6 +18,11 @@ class Petugas extends Model
         'nama_petugas',
         'level',
         'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function petugas(): HasMany

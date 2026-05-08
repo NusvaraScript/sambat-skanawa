@@ -1,12 +1,18 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Tambah Pengaduan')
 
 @section('content')
-<div class="page-heading">
-    <h3>Tambah Pengaduan</h3>
-    <p class="text-subtitle text-muted">Masukkan data pengaduan siswa baru.</p>
-</div>
+@component('components.admin-page-heading', [
+    'title' => 'Tambah Pengaduan',
+    'subtitle' => 'Masukkan data pengaduan siswa baru.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['label' => 'Pengaduan', 'url' => route('admin.pengaduan.index')],
+        ['label' => 'Tambah'],
+    ],
+])
+@endcomponent
 
 <div class="page-content">
     <section class="section">

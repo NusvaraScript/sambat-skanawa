@@ -1,39 +1,23 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Daftar Petugas')
 
 @section('content')
-<div class="page-heading">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <h3>Daftar Petugas</h3>
-            <p class="text-subtitle text-muted mb-0">Lihat data petugas dan tambahkan petugas baru secara manual.</p>
-        </div>
-        <span class="badge bg-light-primary text-primary">Total: {{ $petugas->total() }} petugas</span>
-    </div>
-</div>
+@component('components.admin-page-heading', [
+    'title' => 'Daftar Petugas',
+    'subtitle' => 'Lihat data petugas dan tambahkan petugas baru secara manual.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['label' => 'Petugas'],
+    ],
+])
+    @slot('actions')
+        <span class="badge bg-light-primary text-primary align-self-center">Total: {{ $petugas->total() }} petugas</span>
+    @endslot
+@endcomponent
 
 <div class="page-content">
     <section class="section">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Data petugas belum valid.</strong>
-                <ul class="mb-0 mt-2">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title mb-0">Tambah Petugas Manual</h4>

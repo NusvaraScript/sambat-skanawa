@@ -38,7 +38,7 @@
             </header>
 
             <div class="page-heading">
-                {{ $slot ?? '' }} 
+                @include('components.flash-messages')
                 @yield('content')
             </div>
 

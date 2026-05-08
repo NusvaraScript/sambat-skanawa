@@ -1,39 +1,23 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 
 @section('title', 'Daftar Siswa')
 
 @section('content')
-<div class="page-heading">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <h3>Daftar Siswa</h3>
-            <p class="text-subtitle text-muted mb-0">Lihat data siswa, export data, dan import CSV untuk menambah siswa dalam jumlah besar.</p>
-        </div>
-        <span class="badge bg-light-primary text-primary">Total: {{ $siswas->total() }} siswa</span>
-    </div>
-</div>
+@component('components.admin-page-heading', [
+    'title' => 'Daftar Siswa',
+    'subtitle' => 'Lihat data siswa, export data, dan import CSV untuk menambah siswa dalam jumlah besar.',
+    'breadcrumbs' => [
+        ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['label' => 'Siswa'],
+    ],
+])
+    @slot('actions')
+        <span class="badge bg-light-primary text-primary align-self-center">Total: {{ $siswas->total() }} siswa</span>
+    @endslot
+@endcomponent
 
 <div class="page-content">
     <section class="section">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Data belum bisa diproses.</strong>
-                <ul class="mb-0 mt-2">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div>

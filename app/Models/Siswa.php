@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Siswa extends Model
+class Siswa extends Authenticatable
 {
     protected $table = 'siswa';
 
@@ -15,7 +15,7 @@ class Siswa extends Model
 
     protected $keyType = 'int';
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected $fillable = [
         'nis',
@@ -25,6 +25,15 @@ class Siswa extends Model
         'no_hp',
         'password',
     ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    public function getAuthIdentifierName(): string
+    {
+        return 'nis';
+    }
 
     public function siswa(): HasMany
     {

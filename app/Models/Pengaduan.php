@@ -21,6 +21,7 @@ class Pengaduan extends Model
         'isi_laporan',
         'foto',
         'status',
+        'is_anonymous',
     ];
 
     public function kategori(): BelongsTo
