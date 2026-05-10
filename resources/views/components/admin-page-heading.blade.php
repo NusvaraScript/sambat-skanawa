@@ -16,7 +16,10 @@
             @endif
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first">
-            @include('components.breadcrumbs', ['items' => $breadcrumbs])
+            @include('components.breadcrumbs', [
+                'items' => $breadcrumbs,
+                'title' => null,
+            ])
         </div>
     </div>
 

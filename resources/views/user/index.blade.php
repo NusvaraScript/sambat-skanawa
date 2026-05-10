@@ -4,6 +4,8 @@
 
 @section('breadcrumbs')
     @include('components.breadcrumbs', [
+        'title' => 'Pengaduan Siswa',
+        'subtitle' => 'Sampaikan keluhan dan aspirasi Anda dengan mudah dan aman',
         'items' => [
             ['label' => 'Beranda'],
         ],

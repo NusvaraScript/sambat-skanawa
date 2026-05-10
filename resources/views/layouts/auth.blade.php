@@ -11,11 +11,32 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/auth.css') }}">
+    <style>
+        .page-title {
+            margin-bottom: 2rem;
+        }
+
+        .page-title h3 {
+            font-weight: 700;
+        }
+
+        .text-subtitle {
+            color: #6c757d !important;
+            font-size: 0.875rem;
+            margin-bottom: 0;
+        }
+    </style>
     @stack('styles')
 </head>
 
 <body>
     <div id="auth">
+        @hasSection('breadcrumbs')
+            <div class="container mt-4">
+                @yield('breadcrumbs')
+            </div>
+        @endif
+
         @yield('content')
     </div>
 
