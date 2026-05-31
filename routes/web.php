@@ -54,9 +54,13 @@ Route::middleware('auth:petugas')->prefix('admin')->name('admin.')->group(functi
         Route::get('/siswa/export', [SiswaController::class, 'export'])->name('siswa.export');
         Route::get('/siswa/template', [SiswaController::class, 'template'])->name('siswa.template');
         Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import');
+        Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
+        Route::put('/siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
+        Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
         Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.index');
         Route::post('/petugas', [PetugasController::class, 'store'])->name('petugas.store');
+        Route::get('/petugas/{petugas}/edit', [PetugasController::class, 'edit'])->name('petugas.edit');
         Route::put('/petugas/{petugas}', [PetugasController::class, 'update'])->name('petugas.update');
     });
 });

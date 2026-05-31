@@ -36,6 +36,44 @@ class SiswaController extends Controller
         return view('admin.siswa.index', compact('siswas', 'search'));
     }
 
+    public function edit(Siswa $siswa): \Illuminate\Http\JsonResponse
+    {
+        return response()->json($siswa->only(['nis', 'nama_siswa', 'username', 'kelas', 'no_hp']));
+    }
+
+    public function update(Request $request, Siswa $siswa): RedirectResponse
+    {
+        $request->validate([
+            'nama_siswa' => ['required', 'string', 'max:255'],
+            'username'   => ['required', 'string', 'max:255', Rule::unique('siswa', 'username')->ignore($siswa->nis, 'nis')],
+            'kelas'      => ['required', 'string', 'max:255'],
+            'no_hp'      => ['required', 'string', 'max:20'],
+            'password'   => ['nullable', 'string', 'min:6'],
+        ]);
+
+        $data = $request->only(['nama_siswa', 'username', 'kelas', 'no_hp']);
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->input('password'));
+        }
+
+        $siswa->update($data);
+
+        return redirect()
+            ->route('admin.siswa.index')
+            ->with('success', 'Data siswa ' . $siswa->nama_siswa . ' berhasil diperbarui.');
+    }
+
+    public function destroy(Siswa $siswa): RedirectResponse
+    {
+        $nama = $siswa->nama_siswa;
+        $siswa->delete();
+
+        return redirect()
+            ->route('admin.siswa.index')
+            ->with('success', 'Siswa ' . $nama . ' berhasil dihapus.');
+    }
+
     public function export(): StreamedResponse
     {
         $filename = 'data-siswa-' . now()->format('Ymd-His') . '.csv';
