@@ -70,4 +70,19 @@ class PetugasController extends Controller
             ->route('admin.petugas.index')
             ->with('success', 'Petugas berhasil diperbarui.');
     }
+    public function destroy(Petugas $petugas): RedirectResponse
+{
+    // Mencegah admin menghapus dirinya sendiri
+    if (auth()->id() == $petugas->id) {
+        return redirect()
+            ->route('admin.petugas.index')
+            ->with('error', 'Anda tidak dapat menghapus akun yang sedang digunakan.');
+    }
+
+    $petugas->delete();
+
+    return redirect()
+        ->route('admin.petugas.index')
+        ->with('success', 'Petugas berhasil dihapus.');
+}
 }

@@ -23,18 +23,19 @@
 @endcomponent
 
 <div class="page-content">
+
     <section class="row">
         <div class="col-12 col-lg-9">
             <div class="row">
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-6 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="stats-icon purple flex-shrink-0">
-                                    <i class="bi bi-chat-left-text-fill"></i>
+                                    <center><i class="bi bi-chat-left-text-fill"></i></center>
                                 </div>
                                 <div class="flex-grow-1 min-w-0">
-                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Pengaduan</h6>
+                                    <h6 class=" font-semibold mb-1 text-truncate">Pengaduan</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalPengaduan) }}</h6>
                                 </div>
                             </div>
@@ -42,15 +43,15 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-6 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="stats-icon blue flex-shrink-0">
-                                    <i class="bi bi-reply-fill"></i>
+                                    <center><i class="bi bi-reply-fill"></i></center>
                                 </div>
                                 <div class="flex-grow-1 min-w-0">
-                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Tanggapan</h6>
+                                    <h6 class=" font-semibold mb-1 text-truncate">Tanggapan</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalTanggapan) }}</h6>
                                 </div>
                             </div>
@@ -58,15 +59,15 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-6 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="stats-icon green flex-shrink-0">
-                                    <i class="bi bi-people-fill"></i>
+                                    <center><i class="bi bi-people-fill"></i></center>
                                 </div>
                                 <div class="flex-grow-1 min-w-0">
-                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Siswa</h6>
+                                    <h6 class=" font-semibold mb-1 text-truncate">Siswa</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalSiswa) }}</h6>
                                 </div>
                             </div>
@@ -74,15 +75,15 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-lg-3 col-md-6">
+                <div class="col-6 col-lg-6 col-md-6">
                     <div class="card">
                         <div class="card-body px-3 py-4-5">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="stats-icon red flex-shrink-0">
-                                    <i class="bi bi-person-badge-fill"></i>
+                                    <center><i class="bi bi-person-badge-fill"></i></center>
                                 </div>
                                 <div class="flex-grow-1 min-w-0">
-                                    <h6 class="text-muted font-semibold mb-1 text-truncate">Petugas</h6>
+                                    <h6 class=" font-semibold mb-1 text-truncate">Petugas</h6>
                                     <h6 class="font-extrabold mb-0">{{ number_format($totalPetugas) }}</h6>
                                 </div>
                             </div>
@@ -203,10 +204,10 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl bg-light-primary d-flex align-items-center justify-content-center">
-                            <i class="bi bi-shield-lock-fill fs-3"></i>
+                            <center><i class="bi bi-shield-lock-fill fs-3"></i></center>
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">Admin Sekolah</h5>
+                            <h5 class="font-bold">Admin</h5>
                             <h6 class="text-muted mb-0">Dashboard</h6>
                         </div>
                     </div>

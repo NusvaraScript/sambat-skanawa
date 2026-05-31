@@ -100,19 +100,24 @@
 
             <div class="text-center mt-4 text-lg fs-5">
                 <p class="text-gray-600">Sudah punya akun?
-                    <a href="{{ route('login') }}" class="font-bold">Log in</a>.
+                    <a href="{{ route('login') }}" class="font-bold">Login</a>.
                 </p>
             </div>
         </div>
     </div>
 
     <div class="col-lg-7 d-none d-lg-block">
-        <div id="auth-right" class="h-100"
-             style="background: linear-gradient(rgba(67, 94, 190, 0.4), rgba(67, 94, 190, 0.6)), 
-                    url('{{ asset('assets/images/bg/thumbnail.png') }}');
-                    background-size: cover;
-                    background-position: center;
-                    min-height: 100vh;">
-        </div>
+    <div
+        id="auth-right"
+        class="h-100"
+        style="
+            background-image:
+                linear-gradient(rgba(67,94,190,0.4), rgba(67,94,190,0.6)),
+                url('{{ asset('assets/images/bg/thumbnail.png') }}');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        ">
     </div>
+</div>
 </div>

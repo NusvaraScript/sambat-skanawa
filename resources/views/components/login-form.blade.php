@@ -5,7 +5,7 @@
             </a>
         </div>
         
-        <h1 class="auth-title h2">Log in.</h1>
+        <h1 class="auth-title h2">Login.</h1>
         <p class="auth-subtitle mb-4">Masuk sebagai petugas/admin atau siswa untuk mengirim pengaduan non-anonim.</p>
 
         <form action="{{ route('login.attempt') }}" method="POST">
@@ -44,7 +44,7 @@
                 </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-4 w-100">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-4 w-100">Login</button>
         </form>
 
         <div class="text-center mt-5 text-lg fs-5">
@@ -56,12 +56,17 @@
 </div>
 
 <div class="col-lg-7 d-none d-lg-block">
-    <div id="auth-right" class="h-100"
-         style="background: linear-gradient(rgba(67, 94, 190, 0.7), rgba(67, 94, 190, 0.7)), 
+    <div
+        id="auth-right"
+        class="h-100"
+        style="
+            background-image:
+                linear-gradient(rgba(67,94,190,0.4), rgba(67,94,190,0.6)),
                 url('{{ asset('assets/images/bg/thumbnail.png') }}');
-                background-size: cover;
-                background-position: center;
-                min-height: 100vh;">
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        ">
     </div>
 </div>
 </div>

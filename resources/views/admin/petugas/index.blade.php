@@ -99,6 +99,7 @@
                                 <th>Username</th>
                                 <th>Level</th>
                                 <th>Jumlah Tanggapan</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,10 +116,25 @@
                                     <td>
                                         <span class="badge bg-primary">{{ $petugasItem->tanggapan_count }}</span>
                                     </td>
+                                    <td class="text-center">
+                                    <form action="{{ route('admin.petugas.destroy', ['petugas' => $petugasItem]) }}"
+                                        method="POST"
+                                        class="d-inline"
+                                        onsubmit="return confirm('Yakin ingin menghapus petugas ini?')">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted">Belum ada data petugas.</td>
+                                    <td colspan="6" class="text-center text-muted">
+                                        <i class="bi bi-person-x fs-1"></i>
+                                        <p class="mb-0">Belum ada petugas yang ditambahkan.</p>
                                 </tr>
                             @endforelse
                         </tbody>

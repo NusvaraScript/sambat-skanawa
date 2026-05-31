@@ -22,10 +22,12 @@ class DashboardController extends Controller
         $totalTanggapan = Tanggapan::count();
         $totalSiswa = Siswa::count();
         $totalPetugas = Petugas::count();
+    
 
         $menunggu = Pengaduan::whereIn('status', $statusMenunggu)->count();
         $diproses = Pengaduan::where('status', 'proses')->count();
         $selesai = Pengaduan::where('status', 'selesai')->count();
+        
 
         $pengaduanHariIni = Pengaduan::whereDate('created_at', $today)->count();
         $belumDitanggapi = Pengaduan::whereDoesntHave('tanggapan')->count();
@@ -57,7 +59,8 @@ class DashboardController extends Controller
             'belumDitanggapi',
             'petugasAktif',
             'pengaduanTerbaru',
-            'aktivitasPetugas'
+            'aktivitasPetugas',
+            
         ));
     }
 }

@@ -3,6 +3,7 @@
         position: fixed !important;
         height: 100vh !important;
         bottom: 0 !important;
+        background-color: #f6fbff !important;
     }
     .sidebar-menu {
         padding-bottom: 5rem !important;
@@ -19,10 +20,22 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo">
-                    </a>
-                </div>
+                <a href="{{ url('/') }}">
+
+        @if(auth()->user()?->level === 'admin')
+            <img src="{{ asset('assets/images/logo/admin.png') }}"
+                alt="Logo Admin"
+                style="width: 140px; height: auto;">
+
+        @elseif(auth()->user()?->level === 'petugas')
+            <img src="{{ asset('assets/images/logo/petugas.png') }}"
+                alt="Logo Petugas"
+                style="width: 140px; height: auto;">
+
+        @endif
+
+    </a>
+</div>
 
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block">
@@ -57,6 +70,7 @@
                         <li class="submenu-item {{ request()->routeIs('admin.tanggapan.*') ? 'active' : '' }}">
                             <a href="{{ route('admin.tanggapan.index') }}">Tanggapan Petugas</a>
                         </li>
+                        
                     </ul>
                 </li>
 

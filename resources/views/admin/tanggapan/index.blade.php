@@ -53,21 +53,31 @@
                                     <td>{{ $item->petugas->nama_petugas ?? '-' }}</td>
                                     <td>{{ \Illuminate\Support\Str::limit($item->isi_tanggapan, 120) }}</td>
                                     <td>{{ $item->created_at?->format('d-m-Y H:i') ?? '-' }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('admin.tanggapan.show', $item) }}" class="btn btn-sm btn-info">
-                                            <i class="bi bi-eye"></i><span class="d-none d-lg-inline"> Detail</span>
+                                   <td class="text-center" style="white-space: nowrap;">
+                                    <div class="d-flex justify-content-center align-items-center gap-1">
+                                        <a href="{{ route('admin.tanggapan.show', $item) }}"
+                                            class="btn btn-info btn-sm">
+                                            <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="{{ route('admin.tanggapan.edit', $item) }}" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil-square"></i><span class="d-none d-lg-inline"> Edit</span>
+
+                                        <a href="{{ route('admin.tanggapan.edit', $item) }}"
+                                            class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil-square"></i>
                                         </a>
-                                        <form action="{{ route('admin.tanggapan.destroy', $item) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus tanggapan ini?')">
+
+                                        <form action="{{ route('admin.tanggapan.destroy', $item) }}"
+                                            method="POST"
+                                            class="d-inline"
+                                            onsubmit="return confirm('Yakin ingin menghapus tanggapan ini?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="bi bi-trash"></i><span class="d-none d-lg-inline"> Hapus</span>
+
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
-                                    </td>
+                                    </div>
+                                </td>
                                 </tr>
                             @empty
                                 <tr>

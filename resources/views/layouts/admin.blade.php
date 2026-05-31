@@ -37,6 +37,7 @@
         #main {
             padding-left: .75rem;
             padding-right: .75rem;
+            background-color: #BDD8E9;
         }
 
         @media (min-width: 768px) {

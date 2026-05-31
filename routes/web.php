@@ -43,7 +43,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth:petugas')->prefix('admin')->name('admin.')->group(function (): void {
     Route::redirect('/', '/admin/dashboard')->name('home');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    Route::delete('/petugas/{petugas}', [PetugasController::class, 'destroy'])
+    ->name('petugas.destroy');
+    
     Route::resource('pengaduan', AdminPengaduanController::class);
     Route::resource('tanggapan', TanggapanController::class);
 
