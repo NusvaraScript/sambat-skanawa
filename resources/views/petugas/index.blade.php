@@ -85,7 +85,8 @@
                 <div class="card-body">
                     @forelse ($aktivitasPetugas as $aktivitas)
                         <div class="d-flex mb-3">
-                            <div class="avatar bg-light-primary me-3"><span class="avatar-content"><i class="bi bi-reply-fill"></i></span></div>
+                            <div class="avatar bg-light-primary flex-shrink-0 me-3"><span class="avatar-content"><i class="bi bi-reply-fill"></i></span></div>
+
                             <div>
                                 <h6 class="mb-1">{{ $aktivitas->petugas->nama_petugas ?? 'Petugas' }}</h6>
                                 <p class="mb-0 text-muted small">Menanggapi: {{ $aktivitas->pengaduan->judul_laporan ?? '-' }}</p>

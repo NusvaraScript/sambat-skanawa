@@ -44,6 +44,7 @@
                         <label for="siswa_nis" class="form-label">Siswa</label>
                         <select name="siswa_nis" id="siswa_nis" class="form-select @error('siswa_nis') is-invalid @enderror" required>
                             <option value="">Pilih siswa</option>
+
                             @foreach ($siswas as $siswa)
                                 <option value="{{ $siswa->nis }}" @selected(old('siswa_nis', $pengaduan->siswa_nis) == $siswa->nis)>
                                     {{ $siswa->nama_siswa }} ({{ $siswa->nis }})
