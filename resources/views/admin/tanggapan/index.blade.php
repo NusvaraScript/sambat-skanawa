@@ -13,7 +13,28 @@
 ])
 @endcomponent
 
+<div class="page-content">
     <section class="section">
+
+        {{-- Flash Messages --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="card-title mb-0">Daftar Tanggapan</h4>
@@ -53,31 +74,27 @@
                                     <td>{{ $item->petugas->nama_petugas ?? '-' }}</td>
                                     <td>{{ \Illuminate\Support\Str::limit($item->isi_tanggapan, 120) }}</td>
                                     <td>{{ $item->created_at?->format('d-m-Y H:i') ?? '-' }}</td>
-                                   <td class="text-center" style="white-space: nowrap;">
-                                    <div class="d-flex justify-content-center align-items-center gap-1">
-                                        <a href="{{ route('admin.tanggapan.show', $item) }}"
-                                            class="btn btn-info btn-sm">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-
-                                        <a href="{{ route('admin.tanggapan.edit', $item) }}"
-                                            class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-
-                                        <form action="{{ route('admin.tanggapan.destroy', $item) }}"
-                                            method="POST"
-                                            class="d-inline"
-                                            onsubmit="return confirm('Yakin ingin menghapus tanggapan ini?')">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-1">
+                                            <a href="{{ route('admin.tanggapan.show', $item) }}"
+                                                class="btn btn-sm btn-outline-info" title="Detail">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.tanggapan.edit', $item) }}"
+                                                class="btn btn-sm btn-outline-warning" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <form action="{{ route('admin.tanggapan.destroy', $item) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Hapus tanggapan ini? Data tidak dapat dikembalikan.')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -97,4 +114,5 @@
             </div>
         </div>
     </section>
+</div>
 @endsection

@@ -5,7 +5,7 @@
 @section('content')
 @component('components.admin-page-heading', [
     'title' => 'Edit Tanggapan',
-    'subtitle' => 'Perbarui data tanggapan pengaduan.',
+    'subtitle' => 'Perbarui isi tanggapan untuk pengaduan siswa.',
     'breadcrumbs' => [
         ['label' => 'Dashboard', 'url' => route('admin.dashboard')],
         ['label' => 'Tanggapan', 'url' => route('admin.tanggapan.index')],
@@ -14,6 +14,7 @@
 ])
 @endcomponent
 
+<div class="page-content">
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -24,38 +25,28 @@
                     @csrf
                     @method('PUT')
 
+                    {{-- Pengaduan: readonly, ID dikirim via hidden --}}
                     <div class="mb-3">
-                        <label for="pengaduan_id" class="form-label">Pengaduan</label>
-                        <select name="pengaduan_id" id="pengaduan_id" class="form-select @error('pengaduan_id') is-invalid @enderror" required>
-                            <option value="">Pilih Pengaduan</option>
-                            @foreach ($pengaduan as $item)
-                                <option value="{{ $item->id }}" @selected(old('pengaduan_id', $tanggapan->pengaduan_id) == $item->id)>
-                                    {{ $item->judul_laporan }} - {{ $item->siswa->nama_siswa ?? 'Tanpa siswa' }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('pengaduan_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label class="form-label fw-semibold">Pengaduan</label>
+                        <input type="text" class="form-control bg-light"
+                            value="{{ $tanggapan->pengaduan->judul_laporan ?? '-' }} — {{ $tanggapan->pengaduan?->is_anonymous ? 'Anonim' : ($tanggapan->pengaduan->siswa->nama_siswa ?? 'Tanpa siswa') }}"
+                            readonly>
+                        <div class="form-text">Pengaduan tidak dapat diubah.</div>
+                        <input type="hidden" name="pengaduan_id" value="{{ $tanggapan->pengaduan_id }}">
                     </div>
 
+                    {{-- Petugas: readonly, ID dikirim via hidden --}}
                     <div class="mb-3">
-                        <label for="petugas_id" class="form-label">Petugas</label>
-                        <select name="petugas_id" id="petugas_id" class="form-select @error('petugas_id') is-invalid @enderror" required>
-                            <option value="">Pilih Petugas</option>
-                            @foreach ($petugas as $item)
-                                <option value="{{ $item->id }}" @selected(old('petugas_id', $tanggapan->petugas_id) == $item->id)>
-                                    {{ $item->nama_petugas }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('petugas_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label class="form-label fw-semibold">Petugas</label>
+                        <input type="text" class="form-control bg-light"
+                            value="{{ $tanggapan->petugas->nama_petugas ?? '-' }}"
+                            readonly>
+                        <div class="form-text">Petugas tidak dapat diubah.</div>
+                        <input type="hidden" name="petugas_id" value="{{ $tanggapan->petugas_id }}">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="isi_tanggapan" class="form-label">Isi Tanggapan</label>
+                    <div class="mb-4">
+                        <label for="isi_tanggapan" class="form-label fw-semibold">Isi Tanggapan <span class="text-danger">*</span></label>
                         <textarea name="isi_tanggapan" id="isi_tanggapan" class="form-control @error('isi_tanggapan') is-invalid @enderror" rows="5" required>{{ old('isi_tanggapan', $tanggapan->isi_tanggapan) }}</textarea>
                         @error('isi_tanggapan')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -63,11 +54,16 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Perbarui</button>
-                        <a href="{{ route('admin.tanggapan.index') }}" class="btn btn-secondary">Kembali</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i>Simpan Perubahan
+                        </button>
+                        <a href="{{ route('admin.tanggapan.index') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left me-1"></i>Batal
+                        </a>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+</div>
 @endsection
