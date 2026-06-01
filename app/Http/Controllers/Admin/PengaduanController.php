@@ -77,7 +77,14 @@ class PengaduanController extends Controller
 
     public function update(Request $request, Pengaduan $pengaduan): RedirectResponse
     {
-        $validated = $request->validate($this->rules());
+        $validated = $request->validate([
+            'kategori_id' => ['required', 'exists:kategori,id'],
+            'judul_laporan' => ['required', 'string', 'max:255'],
+            'isi_laporan' => ['required', 'string'],
+            'foto' => ['nullable', 'string', 'max:255'],
+            'status' => ['required', 'in:pending,proses,selesai'],
+        ]);
+
         $validated['foto'] = $validated['foto'] ?? '';
 
         $pengaduan->update($validated);

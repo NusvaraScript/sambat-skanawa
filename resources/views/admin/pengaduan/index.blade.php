@@ -12,6 +12,26 @@
 
     <div class="page-content">
         <section class="section">
+
+            {{-- Flash Messages --}}
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title">Daftar Pengaduan</h4>
@@ -76,24 +96,22 @@
                                             <span class="badge {{ $statusMeta['class'] }}">{{ $statusMeta['label'] }}</span>
                                         </td>
                                         <td>
-                                            <div class="d-flex justify-content-end gap-2">
+                                            <div class="d-flex justify-content-end gap-1">
                                                 <a href="{{ route('admin.pengaduan.show', $pengaduan) }}"
-                                                    class="btn btn-sm btn-info">
-                                                    <i class="bi bi-eye"></i><span class="d-none d-lg-inline"> Detail</span>
+                                                    class="btn btn-sm btn-outline-info" title="Detail">
+                                                    <i class="bi bi-eye"></i>
                                                 </a>
                                                 <a href="{{ route('admin.pengaduan.edit', $pengaduan) }}"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="bi bi-pencil-square"></i><span class="d-none d-lg-inline">
-                                                        Edit</span>
+                                                    class="btn btn-sm btn-outline-warning" title="Edit">
+                                                    <i class="bi bi-pencil-square"></i>
                                                 </a>
                                                 <form action="{{ route('admin.pengaduan.destroy', $pengaduan) }}"
                                                     method="POST"
-                                                    onsubmit="return confirm('Yakin ingin menghapus pengaduan ini?')">
+                                                    onsubmit="return confirm('Hapus pengaduan ini? Data tidak dapat dikembalikan.')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">
-                                                        <i class="bi bi-trash"></i><span class="d-none d-lg-inline">
-                                                            Hapus</span>
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>
                                             </div>

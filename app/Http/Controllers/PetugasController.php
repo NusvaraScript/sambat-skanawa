@@ -49,6 +49,11 @@ class PetugasController extends Controller
             ->with('success', 'Petugas berhasil ditambahkan.');
     }
 
+    public function edit(Petugas $petugas): \Illuminate\Http\JsonResponse
+    {
+        return response()->json($petugas->only(['id', 'nama_petugas', 'username', 'level']));
+    }
+
     public function update(Request $request, Petugas $petugas): RedirectResponse
     {
         $validated = $request->validate([
