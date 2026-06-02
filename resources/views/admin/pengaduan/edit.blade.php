@@ -92,21 +92,6 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label for="foto" class="form-label fw-semibold">Foto</label>
-
-                        <input type="text"
-                            name="foto"
-                            id="foto"
-                            value="{{ old('foto', $pengaduan->foto) }}"
-                            class="form-control @error('foto') is-invalid @enderror"
-                            placeholder="Nama file atau URL foto (opsional)">
-
-                        @error('foto')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
                     <div class="mb-4">
                         <label for="status" class="form-label fw-semibold">
                             Status <span class="text-danger">*</span>
