@@ -179,8 +179,9 @@
                         <div class="card-content pb-4">
                             @forelse ($aktivitasPetugas as $aktivitas)
                                 <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg bg-light-primary d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-person-check-fill fs-4"></i>
+                                    <div class="avatar avatar-lg bg-light-primary'>
+                                     <div class="avatar-content">
+                                         <center><i class="bi bi-person-check-fill fs-4"></i></center>
                                     </div>
                                     <div class="name ms-4">
                                         <h5 class="mb-1">{{ $aktivitas->petugas->nama_petugas ?? 'Petugas' }}</h5>

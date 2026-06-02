@@ -1,8 +1,6 @@
 <div class="row min-vh-100 g-0"> <div class="col-lg-5 col-md-8 col-12 d-flex align-items-center mx-auto">
     <div id="auth-left" class="p-4 p-sm-5 w-100"> <div class="auth-logo mb-5 text-center text-lg-start">
-            <a href="{{ url('/') }}">
-                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo" style="height: 2.5rem;">
-            </a>
+            
         </div>
         
         <h1 class="auth-title h2">Login.</h1>
