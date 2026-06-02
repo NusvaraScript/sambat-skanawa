@@ -87,14 +87,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-12">
-                                <label for="foto" class="form-label">Foto Pendukung</label>
-                                <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*">
-                                <small class="text-muted">Opsional. Format gambar maksimal 2MB.</small>
-                                @error('foto')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                           
                         </div>
 
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4">
