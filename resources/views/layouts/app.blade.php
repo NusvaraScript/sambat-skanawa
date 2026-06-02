@@ -89,13 +89,23 @@
 
     </div>
     
-    <script src="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    @if (env('ASSETS_USE_CDN', false))
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
 
-    <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+        <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
 
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+    @else
+        <script src="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
+        <script src="{{ asset('assets/vendors/apexcharts/apexcharts.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
+
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+    @endif
     
     <!-- JS Tambahan (Opsional) -->
     @stack('scripts')
