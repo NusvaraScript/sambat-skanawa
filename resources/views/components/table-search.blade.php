@@ -4,7 +4,7 @@
 @endphp
 
 <form method="GET" action="{{ $searchAction ?? url()->current() }}" class="row g-2 align-items-center mb-3">
-    <div class="col">
+    <div class="col col-md-6">
         <label for="search" class="visually-hidden">Cari Data</label>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="col-auto d-flex gap-2">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-success">
             <i class="bi bi-search"></i> Cari
         </button>
         @if ($searchValue)
