@@ -60,7 +60,6 @@ class PengaduanSeeder extends Seeder
                 'siswa_nis' => $isAnonymous ? null : $faker->randomElement($siswaNis),
                 'judul_laporan' => $faker->randomElement($judulContoh),
                 'isi_laporan' => $faker->randomElement($isiContoh),
-                'foto' => 'no-image.png',
                 'status' => $faker->randomElement(['pending', 'proses', 'selesai']),
                 'is_anonymous' => $isAnonymous,
             ]);

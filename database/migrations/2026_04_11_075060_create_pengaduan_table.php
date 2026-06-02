@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('siswa_nis')->references('nis')->on('siswa')->cascadeOnDelete();
             $table->string('judul_laporan');
             $table->text('isi_laporan');
-            $table->string('foto');
+            // kolom 'foto' dihapus sesuai permintaan
             $table->enum('status', ['pending', 'proses', 'selesai'])->default('pending');
             $table->timestamps();
         });

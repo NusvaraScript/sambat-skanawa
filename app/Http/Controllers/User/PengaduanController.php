@@ -17,7 +17,6 @@ class PengaduanController extends Controller
             'kategori_id' => ['required', 'exists:kategori,id'],
             'judul_laporan' => ['required', 'string', 'max:255'],
             'isi_laporan' => ['required', 'string'],
-            'foto' => ['nullable', 'image', 'max:2048'],
         ]);
 
         $siswa = Auth::guard('siswa')->user();
@@ -26,17 +25,11 @@ class PengaduanController extends Controller
         // Default: tanpa akun siswa => otomatis anonim.
         $isAnonymous = $siswa ? $wantsAnonymous : true;
 
-        $foto = '';
-        if ($request->hasFile('foto')) {
-            $foto = $request->file('foto')->store('pengaduan', 'public');
-        }
-
         Pengaduan::create([
             'kategori_id' => $validated['kategori_id'],
             'siswa_nis' => $isAnonymous ? null : $siswa->nis,
             'judul_laporan' => $validated['judul_laporan'],
             'isi_laporan' => $validated['isi_laporan'],
-            'foto' => $foto,
             'status' => 'pending',
             'is_anonymous' => $isAnonymous,
         ]);

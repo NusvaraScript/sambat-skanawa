@@ -50,7 +50,6 @@ class PengaduanController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate($this->rules());
-        $validated['foto'] = $validated['foto'] ?? '';
 
         Pengaduan::create($validated);
 
@@ -81,11 +80,8 @@ class PengaduanController extends Controller
             'kategori_id' => ['required', 'exists:kategori,id'],
             'judul_laporan' => ['required', 'string', 'max:255'],
             'isi_laporan' => ['required', 'string'],
-            'foto' => ['nullable', 'string', 'max:255'],
             'status' => ['required', 'in:pending,proses,selesai'],
         ]);
-
-        $validated['foto'] = $validated['foto'] ?? '';
 
         $pengaduan->update($validated);
 
@@ -110,7 +106,6 @@ class PengaduanController extends Controller
             'siswa_nis' => ['required', 'exists:siswa,nis'],
             'judul_laporan' => ['required', 'string', 'max:255'],
             'isi_laporan' => ['required', 'string'],
-            'foto' => ['nullable', 'string', 'max:255'],
             'status' => ['required', 'in:pending,proses,selesai'],
         ];
     }

@@ -19,7 +19,6 @@ class Pengaduan extends Model
         'siswa_nis',
         'judul_laporan',
         'isi_laporan',
-        'foto',
         'status',
         'is_anonymous',
     ];
