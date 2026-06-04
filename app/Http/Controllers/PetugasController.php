@@ -78,7 +78,7 @@ class PetugasController extends Controller
     public function destroy(Petugas $petugas): RedirectResponse
 {
     // Mencegah admin menghapus dirinya sendiri
-    if (auth()->id() == $petugas->id) {
+    if (auth('petugas')->id() == $petugas->id) {
         return redirect()
             ->route('admin.petugas.index')
             ->with('error', 'Anda tidak dapat menghapus akun yang sedang digunakan.');

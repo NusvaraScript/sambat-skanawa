@@ -3,7 +3,7 @@
 @section('title', 'Detail Pengaduan')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Detail Pengaduan',
     'subtitle' => 'Lihat detail laporan dan tanggapan yang terkait.',
     'breadcrumbs' => [
@@ -54,18 +54,7 @@
                                 </span>
                             </dd>
 
-                            <dt class="col-sm-4">Foto</dt>
-                            <dd class="col-sm-8">
-                                @if ($pengaduan->foto)
-                                    <a href="{{ asset('storage/' . $pengaduan->foto) }}" target="_blank" class="d-inline-block">
-                                        <img src="{{ asset('storage/' . $pengaduan->foto) }}" alt="Foto pengaduan"
-                                             class="img-fluid rounded border" style="max-height: 260px;">
-                                    </a>
-                                    <div class="text-muted small mt-2">{{ $pengaduan->foto }}</div>
-                                @else
-                                    -
-                                @endif
-                            </dd>
+
 
                             <dt class="col-sm-4">Dibuat</dt>
                             <dd class="col-sm-8">{{ $pengaduan->created_at?->format('d-m-Y H:i') ?? '-' }}</dd>

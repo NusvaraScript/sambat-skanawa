@@ -35,9 +35,11 @@ class Siswa extends Authenticatable
         return 'nis';
     }
 
-    public function siswa(): HasMany
+    protected function casts(): array
     {
-        return $this->pengaduan();
+        return [
+            'password' => 'hashed',
+        ];
     }
 
     public function pengaduan(): HasMany

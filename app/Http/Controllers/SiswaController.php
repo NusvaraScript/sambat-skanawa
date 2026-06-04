@@ -212,7 +212,7 @@ class SiswaController extends Controller
                 'nama_siswa' => ['required', 'string', 'max:255'],
                 'username' => ['required', 'string', 'max:255', Rule::unique('siswa', 'username')],
                 'kelas' => ['required', 'string', 'max:255'],
-                'no_hp' => ['required', 'integer'],
+                'no_hp' => ['required', 'string', 'max:20'],
                 'password' => ['required', 'string', 'min:6'],
             ]);
 

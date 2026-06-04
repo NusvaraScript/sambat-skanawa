@@ -3,7 +3,7 @@
 @section('title', 'Data Pengaduan')
 
 @section('content')
-    @component('components.admin-page-heading', [
+    @component('components.page-heading', [
         'title' => 'Data Pengaduan',
         'subtitle' => 'Kelola pengaduan siswa yang masuk ke sistem.',
         'breadcrumbs' => [['label' => 'Dashboard', 'url' => route('admin.dashboard')], ['label' => 'Pengaduan']],
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="card-body">
-                    @include('components.table-search', [
+                    @include('components.search-bar', [
                         'searchAction' => route('admin.pengaduan.index'),
                         'searchValue' => $search ?? '',
                         'searchPlaceholder' => 'Cari nama siswa, kategori, judul, isi laporan, atau status...',

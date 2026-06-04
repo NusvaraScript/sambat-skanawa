@@ -78,7 +78,7 @@
             </header>
 
             <div class="page-heading">
-                @include('components.flash-messages')
+                @include('components.alert')
                 @yield('content')
             </div>
 

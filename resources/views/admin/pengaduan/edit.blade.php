@@ -3,7 +3,7 @@
 @section('title', 'Edit Pengaduan')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Edit Pengaduan',
     'subtitle' => 'Perbarui data pengaduan siswa.',
     'breadcrumbs' => [

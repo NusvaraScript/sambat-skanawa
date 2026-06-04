@@ -3,7 +3,7 @@
 @section('title', 'Detail Tanggapan')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Detail Tanggapan',
     'subtitle' => 'Lihat detail tanggapan dan pengaduan yang ditanggapi.',
     'breadcrumbs' => [

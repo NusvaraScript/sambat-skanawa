@@ -3,7 +3,7 @@
 @section('title', 'Tambah Tanggapan')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Tambah Tanggapan',
     'subtitle' => 'Tambahkan tanggapan untuk pengaduan siswa.',
     'breadcrumbs' => [
@@ -14,6 +14,7 @@
 ])
 @endcomponent
 
+<div class="page-content">
     <section class="section">
         <div class="card">
             <div class="card-header">
@@ -69,4 +70,5 @@
             </div>
         </div>
     </section>
+</div>
 @endsection

@@ -3,7 +3,7 @@
 @section('title', 'Daftar Siswa')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Daftar Siswa',
     'subtitle' => 'Lihat data siswa, export data, dan import CSV untuk menambah siswa dalam jumlah besar.',
     'breadcrumbs' => [
@@ -80,7 +80,7 @@
                 <h4 class="card-title">Data Siswa</h4>
             </div>
             <div class="card-body">
-                @include('components.table-search', [
+                @include('components.search-bar', [
                     'searchAction' => route('admin.siswa.index'),
                     'searchValue' => $search ?? '',
                     'searchPlaceholder' => 'Cari NIS, nama siswa, username, kelas, atau no. HP...',

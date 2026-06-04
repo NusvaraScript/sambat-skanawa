@@ -11,8 +11,6 @@ class Petugas extends Authenticatable
 
     protected $keyType = 'int';
 
-    protected $guarded = ['id'];
-
     protected $fillable = [
         'username',
         'nama_petugas',
@@ -25,11 +23,12 @@ class Petugas extends Authenticatable
         'remember_token',
     ];
 
-    public function petugas(): HasMany
+    protected function casts(): array
     {
-        return $this->tanggapan();
+        return [
+            'password' => 'hashed',
+        ];
     }
-
     public function tanggapan(): HasMany
     {
         return $this->hasMany(Tanggapan::class, 'petugas_id', 'id');

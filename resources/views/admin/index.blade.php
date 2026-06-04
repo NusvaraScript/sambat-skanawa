@@ -13,7 +13,7 @@
     ];
 @endphp
 
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Dashboard Pengaduan Siswa',
     'subtitle' => 'Ringkasan data pengaduan, tanggapan, siswa, dan petugas',
     'breadcrumbs' => [
@@ -131,9 +131,9 @@
                             <h4>Pengaduan Terbaru</h4>
                         </div>
                         <div class="card-body">
-                        @include('components.table-search', [
-                                'searchAction' => url('/'),
-                                'searchValue' => $search ?? '',
+                        @include('components.search-bar', [
+                                'searchAction' => route('admin.pengaduan.index'),
+                                'searchValue' => '',
                                 'searchPlaceholder' => 'Cari nama siswa, judul, isi pengaduan, atau status...',
                             ])
 
@@ -179,7 +179,7 @@
                         <div class="card-content pb-4">
                             @forelse ($aktivitasPetugas as $aktivitas)
                                 <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg bg-light-primary'>
+                                    <div class="avatar avatar-lg bg-light-primary">
                                      <div class="avatar-content">
                                          <center><i class="bi bi-person-check-fill fs-4"></i></center>
                                     </div>

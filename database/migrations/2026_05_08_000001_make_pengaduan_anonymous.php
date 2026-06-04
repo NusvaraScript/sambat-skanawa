@@ -15,7 +15,9 @@ return new class extends Migration
         });
 
         // Buat siswa_nis nullable (untuk pengaduan anonim).
-        DB::statement('ALTER TABLE pengaduan MODIFY siswa_nis INTEGER NULL');
+        Schema::table('pengaduan', function (Blueprint $table): void {
+            $table->integer('siswa_nis')->nullable()->change();
+        });
 
         // Tandai apakah laporan anonim atau tidak.
         Schema::table('pengaduan', function (Blueprint $table): void {
@@ -30,7 +32,9 @@ return new class extends Migration
         });
 
         // Kembalikan siswa_nis menjadi NOT NULL.
-        DB::statement('ALTER TABLE pengaduan MODIFY siswa_nis INTEGER NOT NULL');
+        Schema::table('pengaduan', function (Blueprint $table): void {
+            $table->integer('siswa_nis')->nullable(false)->change();
+        });
 
         Schema::table('pengaduan', function (Blueprint $table): void {
             $table->foreign('siswa_nis')->references('nis')->on('siswa')->cascadeOnDelete();

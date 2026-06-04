@@ -168,7 +168,7 @@
         @endif
 
         <div class="mt-3">
-            @include('components.flash-messages')
+            @include('components.alert')
         </div>
 
         <main class="page-content mt-4">

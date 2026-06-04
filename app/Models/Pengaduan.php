@@ -12,8 +12,6 @@ class Pengaduan extends Model
 
     protected $keyType = 'int';
 
-    protected $guarded = ['id'];
-
     protected $fillable = [
         'kategori_id',
         'siswa_nis',

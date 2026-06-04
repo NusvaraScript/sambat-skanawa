@@ -3,7 +3,7 @@
 @section('title', 'Data Tanggapan')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Data Tanggapan',
     'subtitle' => 'Kelola tanggapan admin untuk pengaduan siswa.',
     'breadcrumbs' => [
@@ -43,7 +43,7 @@
                 </a>
             </div>
             <div class="card-body">
-                @include('components.table-search', [
+                @include('components.search-bar', [
                     'searchAction' => route('admin.tanggapan.index'),
                     'searchValue' => $search ?? '',
                     'searchPlaceholder' => 'Cari judul pengaduan, nama siswa, petugas, atau isi tanggapan...',

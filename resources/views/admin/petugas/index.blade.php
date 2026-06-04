@@ -3,7 +3,7 @@
 @section('title', 'Daftar Petugas')
 
 @section('content')
-    @component('components.admin-page-heading', [
+    @component('components.page-heading', [
         'title' => 'Daftar Petugas',
         'subtitle' => 'Lihat data petugas dan tambahkan petugas baru secara manual.',
         'breadcrumbs' => [['label' => 'Dashboard', 'url' => route('admin.dashboard')], ['label' => 'Petugas']],
@@ -73,10 +73,14 @@
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <label class="form-label fw-semibold">Petugas</label>
-                                <input type="text" class="form-control bg-light"
-                                    value="Petugas" readonly>
-                                <div class="form-text">Petugas tidak dapat diubah.</div>
+                                <label for="level" class="form-label fw-semibold">Level</label>
+                                <select name="level" id="level" class="form-select @error('level') is-invalid @enderror" required>
+                                    <option value="petugas" @selected(old('level') == 'petugas')>Petugas</option>
+                                    <option value="admin" @selected(old('level') == 'admin')>Admin</option>
+                                </select>
+                                @error('level')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -109,7 +113,7 @@
                     <h4 class="card-title">Data Petugas</h4>
                 </div>
                 <div class="card-body">
-                    @include('components.table-search', [
+                    @include('components.search-bar', [
                         'searchAction' => route('admin.petugas.index'),
                         'searchValue' => $search ?? '',
                         'searchPlaceholder' => 'Cari nama petugas, username, atau level...',

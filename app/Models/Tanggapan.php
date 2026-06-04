@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tanggapan extends Model
 {
-    //
     protected $table = 'tanggapan';
+
     protected $keyType = 'int';
-    
-    protected $guarded = ['id'];
+
     protected $fillable = [
         'pengaduan_id',
         'petugas_id',

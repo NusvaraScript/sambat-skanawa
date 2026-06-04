@@ -3,7 +3,7 @@
 @section('title', 'Dashboard Petugas')
 
 @section('content')
-@component('components.admin-page-heading', [
+@component('components.page-heading', [
     'title' => 'Dashboard Petugas',
     'subtitle' => 'Fokus pada verifikasi laporan dan tindak lanjut pengaduan siswa.',
     'breadcrumbs' => [
