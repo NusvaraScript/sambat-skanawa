@@ -55,7 +55,13 @@
                                 @forelse ($pengaduanTerbaru as $pengaduan)
                                     <tr>
                                         <td class="fw-bold">{{ $pengaduan->judul_laporan }}</td>
-                                        <td>{{ $pengaduan->siswa->nama_siswa ?? '-' }}</td>
+                                        <td>
+                                            @if($pengaduan->siswa)
+                                                {{ $pengaduan->siswa->nama_siswa }}
+                                            @else
+                                                <span class="text-muted fst-italic">Anonim</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $pengaduan->kategori->nama_kategori ?? '-' }}</td>
                                         <td><span class="badge bg-{{ $pengaduan->status === 'selesai' ? 'success' : ($pengaduan->status === 'proses' ? 'primary' : 'warning') }}">{{ ucfirst($pengaduan->status) }}</span></td>
                                     </tr>
@@ -85,7 +91,7 @@
                 <div class="card-body">
                     @forelse ($aktivitasPetugas as $aktivitas)
                         <div class="d-flex mb-3">
-                            <div class="avatar bg-light-primary flex-shrink-0 me-3"><span class="avatar-content"><i class="bi bi-reply-fill"></i></span></div>
+                            <div class="avatar flex-shrink-0 me-3 rounded-2 bg-primary"><span class="avatar-content"><i class="bi bi-reply-fill"></i></span></div>
 
                             <div>
                                 <h6 class="mb-1">{{ $aktivitas->petugas->nama_petugas ?? 'Petugas' }}</h6>
